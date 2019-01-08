@@ -1,0 +1,177 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "Pseudocode",
+    "patterns": [
+        {
+            "include": "#keywords"
+        },
+        {
+            "include": "#strings"
+        },
+        {
+            "include": "#comment"
+        },
+        {
+            "include": "#variables"
+        },
+        {
+            "include": "#numeric-literal"
+        },
+        {
+            "include": "#boolean-literal"
+        }
+    ],
+    "repository": {
+        "keywords": {
+            "patterns": [
+                {
+                    "name": "keyword.control.conditional.pseudo",
+                    "match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(else|if|then|end\\ if)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+                },
+                {
+                    "name": "keyword.control.loop.pseudo",
+                    "match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(loop|break|continue|while|from|end\\ loop)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+                },
+                {
+                    "name": "keyword.control.flow.pseudo",
+                    "match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(return)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+                },
+                {
+                    "name": "storage.modifier.pseudo",
+                    "match": "\\b(to)\\b"
+                }
+            ]
+        },
+        "strings": {
+            "name": "string.quoted.double.pseudo",
+            "begin": "\"",
+            "end": "\"",
+            "patterns": [
+                {
+                    "name": "constant.character.escape.pseudo",
+                    "match": "\\\\."
+                }
+            ]
+        },
+        "comment": {
+            "patterns": [
+                {
+                    "begin": "(^[ \\t]+)?((//)(?:\\s*((@)internal)(?=\\s|$))?)",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "punctuation.whitespace.comment.leading.pseudo"
+                        },
+                        "2": {
+                            "name": "comment.line.double-slash.pseudo"
+                        },
+                        "3": {
+                            "name": "punctuation.definition.comment.pseudo"
+                        },
+                        "4": {
+                            "name": "storage.type.internaldeclaration.pseudo"
+                        },
+                        "5": {
+                            "name": "punctuation.decorator.internaldeclaration.pseudo"
+                        }
+                    },
+                    "end": "(?=$)",
+                    "contentName": "comment.line.double-slash.pseudo"
+                }
+            ]
+        },
+        "variables": {
+            "patterns": [
+                {
+                    "begin": "(^[ \\t]+)?([A-Z]+)(\\.[a-zA-Z]+\\(\\))?",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "punctuation.whitespace.comment.leading.pseudo"
+                        },
+                        "2": {
+                            "name": "variable.name"
+                        },
+                        "3": {
+                            "name": "entity.name.function"
+                        }
+                    },
+                    "end": "(?=$)",
+                    "patterns": [
+                        {
+                            "include": "#keywords"
+                        },
+                        {
+                            "include": "#strings"
+                        },
+                        {
+                            "include": "#comment"
+                        },
+                        {
+                            "include": "#numeric-literal"
+                        },
+                        {
+                            "include": "#boolean-literal"
+                        },
+                        {
+                            "include": "#variables"
+                        }
+                    ]
+                }
+            ]
+        },
+        "numeric-literal": {
+            "patterns": [
+                {
+                    "name": "constant.numeric.hex.js",
+                    "match": "\\b(?<!\\$)0(x|X)[0-9a-fA-F][0-9a-fA-F_]*\\b(?!\\$)"
+                },
+                {
+                    "name": "constant.numeric.binary.js",
+                    "match": "\\b(?<!\\$)0(b|B)[01][01_]*\\b(?!\\$)"
+                },
+                {
+                    "name": "constant.numeric.octal.js",
+                    "match": "\\b(?<!\\$)0(o|O)?[0-7][0-7_]*\\b(?!\\$)"
+                },
+                {
+                    "match": "(?x)\n(?<!\\$)(?:\n  (?:\\b[0-9][0-9_]*(\\.)[0-9][0-9_]*[eE][+-]?[0-9][0-9_]*\\b)| # 1.1E+3\n  (?:\\b[0-9][0-9_]*(\\.)[eE][+-]?[0-9][0-9_]*\\b)|             # 1.E+3\n  (?:\\B(\\.)[0-9][0-9_]*[eE][+-]?[0-9][0-9_]*\\b)|             # .1E+3\n  (?:\\b[0-9][0-9_]*[eE][+-]?[0-9][0-9_]*\\b)|                 # 1E+3\n  (?:\\b[0-9][0-9_]*(\\.)[0-9][0-9_]*\\b)|                      # 1.1\n  (?:\\b[0-9][0-9_]*(\\.)\\B)|                                  # 1.\n  (?:\\B(\\.)[0-9][0-9_]*\\b)|                                  # .1\n  (?:\\b[0-9][0-9_]*\\b(?!\\.))                                 # 1\n)(?!\\$)",
+                    "captures": {
+                        "0": {
+                            "name": "constant.numeric.decimal.js"
+                        },
+                        "1": {
+                            "name": "meta.delimiter.decimal.period.js"
+                        },
+                        "2": {
+                            "name": "meta.delimiter.decimal.period.js"
+                        },
+                        "3": {
+                            "name": "meta.delimiter.decimal.period.js"
+                        },
+                        "4": {
+                            "name": "meta.delimiter.decimal.period.js"
+                        },
+                        "5": {
+                            "name": "meta.delimiter.decimal.period.js"
+                        },
+                        "6": {
+                            "name": "meta.delimiter.decimal.period.js"
+                        }
+                    }
+                }
+            ]
+        },
+        "boolean-literal": {
+            "patterns": [
+                {
+                    "name": "constant.language.boolean.true.js",
+                    "match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))true(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+                },
+                {
+                    "name": "constant.language.boolean.false.js",
+                    "match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))false(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+                }
+            ]
+        }
+    },
+    "scopeName": "source.pseudo"
+}

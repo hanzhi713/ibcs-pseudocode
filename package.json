@@ -1,0 +1,34 @@
+{
+    "name": "ibcs-pseudocode",
+    "displayName": "IBCS Pseudocode",
+    "description": "Basic syntax highlight support for IB-styled pseudocode",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.25.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [
+            {
+                "id": "pseudo",
+                "aliases": [
+                    "Pseudocode",
+                    "pseudo"
+                ],
+                "extensions": [
+                    ".pseudo"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "pseudo",
+                "scopeName": "source.pseudo",
+                "path": "./syntaxes/pseudo.tmLanguage.json"
+            }
+        ]
+    }
+}
