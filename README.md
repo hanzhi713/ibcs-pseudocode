@@ -4,7 +4,7 @@ This extension provides basic syntax highlight for IB-styled pseudocode as speci
 
 ## Features
 
-![demo](demo.png)
+![demo](https://raw.githubusercontent.com/hanzhi713/ibcs-pseudocode/master/demo-small.png)
 
 ## Requirements
 

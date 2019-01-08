@@ -3,6 +3,11 @@
     "displayName": "IBCS Pseudocode",
     "description": "Basic syntax highlight support for IB-styled pseudocode",
     "version": "0.0.1",
+    "publisher": "hanzhi713",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/hanzhi713/ibcs-pseudocode.git"
+    },
     "engines": {
         "vscode": "^1.25.0"
     },
