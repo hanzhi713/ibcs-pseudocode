@@ -25,30 +25,34 @@
         "keywords": {
             "patterns": [
                 {
-                    "name": "keyword.control.conditional.pseudo",
+                    "name": "keyword.control.conditional.js",
                     "match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(else|if|then|end\\ if)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
                 },
                 {
-                    "name": "keyword.control.loop.pseudo",
+                    "name": "keyword.control.loop.js",
                     "match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(loop|break|continue|while|from|end\\ loop)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
                 },
                 {
-                    "name": "keyword.control.flow.pseudo",
+                    "name": "keyword.control.flow.js",
                     "match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(return)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
                 },
                 {
-                    "name": "storage.modifier.pseudo",
+                    "name": "storage.modifier.js",
                     "match": "\\b(to)\\b"
+                },
+                {
+                    "name": "entity.name.type.instance.js",
+                    "match": "\\b(output|input)\\b"
                 }
             ]
         },
         "strings": {
-            "name": "string.quoted.double.pseudo",
+            "name": "string.quoted.double.js",
             "begin": "\"",
             "end": "\"",
             "patterns": [
                 {
-                    "name": "constant.character.escape.pseudo",
+                    "name": "constant.character.escape.js",
                     "match": "\\\\."
                 }
             ]
@@ -59,39 +63,84 @@
                     "begin": "(^[ \\t]+)?((//)(?:\\s*((@)internal)(?=\\s|$))?)",
                     "beginCaptures": {
                         "1": {
-                            "name": "punctuation.whitespace.comment.leading.pseudo"
+                            "name": "punctuation.whitespace.comment.leading.js"
                         },
                         "2": {
-                            "name": "comment.line.double-slash.pseudo"
+                            "name": "comment.line.double-slash.js"
                         },
                         "3": {
-                            "name": "punctuation.definition.comment.pseudo"
+                            "name": "punctuation.definition.comment.js"
                         },
                         "4": {
-                            "name": "storage.type.internaldeclaration.pseudo"
+                            "name": "storage.type.internaldeclaration.js"
                         },
                         "5": {
-                            "name": "punctuation.decorator.internaldeclaration.pseudo"
+                            "name": "punctuation.decorator.internaldeclaration.js"
                         }
                     },
                     "end": "(?=$)",
-                    "contentName": "comment.line.double-slash.pseudo"
-                }
+                    "contentName": "comment.line.double-slash.js"
+                },
+				{
+					"name": "comment.block.js",
+					"begin": "(/\\*)(?:\\s*((@)internal)(?=\\s|(\\*/)))?",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.comment.js"
+						},
+						"2": {
+							"name": "storage.type.internaldeclaration.js"
+						},
+						"3": {
+							"name": "punctuation.decorator.internaldeclaration.js"
+						}
+					},
+					"end": "\\*/",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.js"
+						}
+					}
+				}
             ]
         },
         "variables": {
             "patterns": [
                 {
-                    "begin": "(^[ \\t]+)?([A-Z]+)(\\.[a-zA-Z]+\\(\\))?",
+                    "begin": "(^[ \\t]+)?([A-Z]+)(\\.[a-z_A-Z]+\\(.*\\))?",
                     "beginCaptures": {
                         "1": {
-                            "name": "punctuation.whitespace.comment.leading.pseudo"
+                            "name": "punctuation.whitespace.comment.leading.js"
                         },
                         "2": {
-                            "name": "variable.name"
+                            "name": "variable.name.js"
                         },
                         "3": {
-                            "name": "entity.name.function"
+                            "name": "entity.name.function.js",
+                            "patterns": [
+                                {
+                                    "begin": "\\.[a-z_A-Z]+(\\(.*\\))?",
+                                    "beginCaptures": {
+                                        "1": {
+                                            "patterns": [
+                                                {
+                                                    "include": "#strings"
+                                                },
+                                                {
+                                                    "include": "#numeric-literal"
+                                                },
+                                                {
+                                                    "include": "#boolean-literal"
+                                                },
+                                                {
+                                                    "include": "#variables"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "end": "(?=$)"
+                                }
+                            ]
                         }
                     },
                     "end": "(?=$)",
@@ -100,10 +149,10 @@
                             "include": "#keywords"
                         },
                         {
-                            "include": "#strings"
+                            "include": "#comment"
                         },
                         {
-                            "include": "#comment"
+                            "include": "#strings"
                         },
                         {
                             "include": "#numeric-literal"
