@@ -11,9 +11,3 @@ Syntax highlight will be automatically applied to .pseudo files.
 ## Requirements
 
 VS Code
-
-## Release Notes
-
-### 1.0.0
-
-Initial release
