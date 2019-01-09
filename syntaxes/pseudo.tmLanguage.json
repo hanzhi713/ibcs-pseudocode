@@ -30,7 +30,7 @@
                 },
                 {
                     "name": "keyword.control.loop.js",
-                    "match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(loop|break|continue|while|from|end\\ loop)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
+                    "match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(loop|to|break|continue|while|from|end\\ loop)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
                 },
                 {
                     "name": "keyword.control.flow.js",
@@ -38,7 +38,7 @@
                 },
                 {
                     "name": "storage.modifier.js",
-                    "match": "\\b(to)\\b"
+                    "match": "\\b(and|or|not|div|mod)\\b"
                 },
                 {
                     "name": "entity.name.type.instance.js",
