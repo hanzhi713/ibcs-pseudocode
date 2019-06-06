@@ -6,7 +6,7 @@ Syntax highlight will be automatically applied to .pseudo files.
 
 ## Features
 
-![demo](https://raw.githubusercontent.com/hanzhi713/ibcs-pseudocode/master/demo.png)
+<img src="https://raw.githubusercontent.com/hanzhi713/ibcs-pseudocode/master/demo.png" width="500px">
 
 ## Requirements
 
