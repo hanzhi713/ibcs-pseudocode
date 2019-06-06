@@ -37,12 +37,8 @@
                     "match": "(?<![_$[:alnum:]])(?:(?<=\\.\\.\\.)|(?<!\\.))(return)(?![_$[:alnum:]])(?:(?=\\.\\.\\.)|(?!\\.))"
                 },
                 {
-                    "name": "storage.modifier.js",
-                    "match": "\\b(and|or|not|div|mod)\\b"
-                },
-                {
                     "name": "entity.name.type.instance.js",
-                    "match": "\\b(output|input)\\b"
+                    "match": "\\b(output|input|AND|OR|NOT|div|mod)\\b"
                 }
             ]
         },

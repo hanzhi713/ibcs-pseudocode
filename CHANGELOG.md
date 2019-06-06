@@ -1,8 +1,11 @@
 # Change Log
 
-## [Unreleased]
+## [0.1.0]
 
--   No plan
+- Breaking: change the style for `div` and `mod` 
+- Breaking: replace `or`, `not` and `and` with their capitalized counterpart: `OR`, `NOT`, and `AND`
+- Breaking: now the logical operators, `div`, `mod`, `input` and `output` will have the same color
+- Add acknowledgement
 
 ## [0.0.3]
 
