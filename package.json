@@ -2,7 +2,7 @@
     "name": "ibcs-pseudocode",
     "displayName": "IBCS Pseudocode",
     "description": "Basic syntax highlight support for IB-styled pseudocode",
-    "version": "0.0.3",
+    "version": "0.1.0",
     "publisher": "hanzhi713",
     "repository": {
         "type": "git",
